@@ -7,15 +7,18 @@ on:
         branches: ["main"]
 
 jobs:
-    build-and-verify:
+    build-and-deploy:
         runs-on: ubuntu-latest
 
         steps:
-            -   name: Checkout code
+            -   name: Checkout Code
                 uses: actions/checkout@v4
 
-            -   name: Build docker image
-                run: docker build -t devops-project-ci .
+            -   name: Login to docker hub
+                run: echo "${{ secrets.DOCKERHUBTOKEN }}" | docker login -u "${{ secrets.DOCKERHUBUSERNAME }}" --password-stdin
 
-            -   name: Verify docker image
-                run: docker images devops-project-ci
+            -   name: Build docker image
+                run:  docker build -t <docker login -u fahrezi23>/devops-project:latest .
+
+            -   name: push to docker hub
+                run:  docker push <docker login -u fahrezi23>/devops-project:latest
