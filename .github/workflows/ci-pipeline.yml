@@ -1,0 +1,21 @@
+name: FastAPI CI Pipeline
+
+on:
+    push:
+        branches: ["main"]
+    pull_requests:
+        branches: ["main"]
+
+jobs:
+    build-and-verify:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Build docker image
+                run: docker build -t devops-project-ci .
+
+            -   name: Verify docker image
+                run: docker images devops-project-ci
