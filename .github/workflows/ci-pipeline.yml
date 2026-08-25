@@ -18,7 +18,7 @@ jobs:
                 run: echo "${{ secrets.DOCKERTOKEN }}" | docker login -u "${{ secrets.DOCKERUSERNAME }}" --password-stdin
 
             -   name: Build docker image
-                run:  docker build -t <ikhramfahrezi>/devops-project:latest .
+                run:  docker build -t <ikhramfahrezi>/devops-project1:latest .
 
             -   name: push to docker hub
-                run:  docker push <ikhramfahrezi>/devops-project:latest
+                run:  docker push <ikhramfahrezi>/devops-project1:latest
